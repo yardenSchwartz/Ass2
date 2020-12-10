@@ -1,3 +1,5 @@
+import Entities.History;
+import Entities.Loginlog;
 import Entities.Users;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -208,7 +210,7 @@ public class Assignment {
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+           System.out.println(e);
         }
         finally
         {
@@ -225,18 +227,68 @@ public class Assignment {
 
     /**
      * Q 2.j
+     * The function inserts the row to the History table with current server time
      * @param userid
      * @param mid
      */
     public static void insertToHistory (String userid, String mid){
+        Session session = null;
+        History new_record_history = new History();
+        Timestamp server_time = null;
+        try{
+            session=HibernateUtil.currentSession();
+            new_record_history.setUserid(Long.parseLong(userid));
+            new_record_history.setMid(Long.parseLong(mid));
 
+            server_time = new Timestamp(System.currentTimeMillis());
+            new_record_history.setViewtime(server_time);
+
+            Transaction transaction = session.beginTransaction();
+            session.saveOrUpdate(new_record_history);
+            transaction.commit();
+
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        finally
+        {
+            HibernateUtil.closeSession();
+        }
+
+        System.out.println("The insertion to history table was successful" + server_time);
     }
 
     /**
      * Q 2.l
+     * The function insert the row to the LoginLog table with current server time
      * @param userid
      */
     public static void insertToLog (String userid){
+        Session session = null;
+        Loginlog new_record_log = new Loginlog();
+        Timestamp server_time = null;
+        try{
+            session=HibernateUtil.currentSession();
+            new_record_log.setUserid(Long.parseLong(userid));
+
+            server_time = new Timestamp(System.currentTimeMillis());
+            new_record_log.setLogintime(server_time);
+
+            Transaction transaction = session.beginTransaction();
+            session.saveOrUpdate(new_record_log);
+            transaction.commit();
+
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        finally
+        {
+            HibernateUtil.closeSession();
+        }
+
+        System.out.println("The insertion to log table was successful" + server_time);
 
     }
 
