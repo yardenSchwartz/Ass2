@@ -2,6 +2,7 @@ import Entities.Users;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -16,19 +17,21 @@ public class Assignment {
     public static void main(String[] args) throws ParseException {
 //        int x = Integer.parseInt("05");
 //        System.out.println(x);
-        Date date = new Date();
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        String day_of_birth = "01";
-        String year_of_birth = "2010";
-        int monthNumber = 5;
-//        String date_string = day_of_birth+"/"+"0"+monthNumber+"/"+year_of_birth;
-        date = format.parse(day_of_birth+"/"+"0"+monthNumber+"/"+year_of_birth);
+//        Date date = new Date();
+//        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+//        String day_of_birth = "01";
+//        String year_of_birth = "2010";
+//        int monthNumber = 5;
+////        String date_string = day_of_birth+"/"+"0"+monthNumber+"/"+year_of_birth;
+//        date = format.parse(day_of_birth+"/"+"0"+monthNumber+"/"+year_of_birth);
+//
+//        Timestamp a = new Timestamp(date.getTime());
+//        System.out.println(date);
+//        System.out.println(a);
 
-        Timestamp a = new Timestamp(date.getTime());
-        System.out.println(date);
-        System.out.println(a);
-
-        insertUser("sch", "1234", "yarden", "schwartz", "08", "September", "1995");
+//        insertUser("sch", "1234", "yarden", "schwartz", "08", "September", "1995");
+        String x = validateUser("sch","1234");
+        System.out.println(x);
     }
 
     /**
@@ -147,6 +150,14 @@ public class Assignment {
         return false;
     }
 
+    /**
+     * This Function gets valid strings and add new record to Users table
+     * @param username
+     * @param password
+     * @param first_name
+     * @param last_name
+     * @param date
+     */
     private static void addLineToUsersTable(String username, String password, String first_name, String last_name, Date date) {
 
         Session session = null;
@@ -177,4 +188,81 @@ public class Assignment {
     }
 
 
+    /**
+     * Q 2.h
+     * This function gets username and password and checks if they exist in Users table
+     * @param username
+     * @param password
+     * @return USERID if the values are equal to the values in the table
+     * otherwise return “Not Found”
+     */
+    public static String validateUser (String username, String password){
+
+        Session session = null;
+        List <Users> query_Ans = null;
+        try
+        {
+            session=HibernateUtil.currentSession();
+            String query = "select users from Users users where users.username='"+username+"' and users.password='"+password+"'";
+            query_Ans = session.createQuery(query).getResultList();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            HibernateUtil.closeSession();
+        }
+        if(query_Ans.size()>0){
+            long uId = query_Ans.get(0).getUserid();
+            return String.valueOf(uId);
+        }
+
+        return "Not Found";
+    }
+
+
+    /**
+     * Q 2.j
+     * @param userid
+     * @param mid
+     */
+    public static void insertToHistory (String userid, String mid){
+
+    }
+
+    /**
+     * Q 2.l
+     * @param userid
+     */
+    public static void insertToLog (String userid){
+
+    }
+
+    /**
+     * Q 2.n
+     * @return from the table Users all users
+     */
+    public static List<Users> getUsers (){
+        List<Users> listOfAllUsersFromQuery = null;
+        Session session = null;
+
+        try
+        {
+            session=HibernateUtil.currentSession();
+            String query = "select users from Users users";
+            listOfAllUsersFromQuery = session.createQuery(query).getResultList();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            HibernateUtil.closeSession();
+        }
+
+        return listOfAllUsersFromQuery;
+    }
 }
