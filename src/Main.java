@@ -43,5 +43,18 @@ public class Main {
         } finally {
             session.close();
         }
+//        Assignment.insertUser("ilan","1234","ilan1","kama1",
+//                "8","3","1994");
+//        Assignment.insertUser("ilan1","1234","ilan2","kama2",
+//                "8","4","1994");
+//        Assignment.insertUser("ilan2","1234","ilan3","kam2a",
+//                "8","5","1994");
+//        Assignment.insertUser("ilan3","1234","ilan4","ka2ma",
+//                "8","6","1994");
+//
+//        Assignment.getNumberOfRegistredUsers(2);
+        System.out.println(Assignment.isExistUsername("eden"));
+//        System.out.println(ans + " should be null");
+
     }
 }
