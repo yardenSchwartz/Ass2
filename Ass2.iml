@@ -184,7 +184,16 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../../ojdbc6.jar!/" />
+          <root url="jar://C:/../ojdbc6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Desktop/Studies/שנה ד/סמסטר א/נושאים מתקדמים בבסיסי נתונים/עבודה 2/ojdbc6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

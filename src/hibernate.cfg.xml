@@ -11,7 +11,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 
-        <!--<mapping resource="Users.hbm.xml"/>-->
+        <mapping resource="Entities/Users.hbm.xml"/>
         <mapping class="Entities.Administrators"/>
         <mapping class="Entities.History"/>
         <mapping class="Entities.Loginlog"/>
