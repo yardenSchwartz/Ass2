@@ -31,9 +31,12 @@ public class Assignment {
 //        System.out.println(date);
 //        System.out.println(a);
 
-//        insertUser("sch", "1234", "yarden", "schwartz", "08", "September", "1995");
-        String x = validateUser("sch","1234");
-        System.out.println(x);
+        String user1 = insertUser("sch4", "1234", "yarden", "schwartz", "08", "September", "1995");
+        System.out.println(user1);
+        String user2 = insertUser("sch5", "1234", "yarden", "schwartz", "08", "September", "1995");
+        System.out.println(user2);
+        //        String x = validateUser("sch","1234");
+//        System.out.println(x);
     }
 
     /**
@@ -59,12 +62,15 @@ public class Assignment {
      */
     public static String insertUser(String username, String password, String first_name, String last_name,
                                     String day_of_birth, String month_of_birth, String year_of_birth){
+        
         //checking validation
         if( (Integer.parseInt(day_of_birth) > 0 && Integer.parseInt(day_of_birth) <= 31 ) &&
                 (Integer.parseInt(year_of_birth) <= 2020) ){
             if(isExistUsername(username))
                 return null;
             else{
+                Session session = null;
+                Users new_user = new Users();
                 try {
                     //convert string of date to date format
                     Date date = new Date();
@@ -84,19 +90,25 @@ public class Assignment {
                             return null; //invalid month
                         }
                     }
-
-                    // insert the user to Users table
-                    addLineToUsersTable(username, password, first_name, last_name, date);
+                    // insert the user to Users table and return his id
+                    return addLineToUsersTable(username, password, first_name, last_name, date);
                 }
                 catch (Exception e){
                     System.out.println(e);
                 }
+                finally
+                {
+                    HibernateUtil.closeSession();
+                }
+                String userId = String.valueOf(new_user.getUserid());
+                return userId;
             }
         }
         else //not valid
             return null;
 
-        return null;
+//        return null;
+
     }
 
 
@@ -160,7 +172,7 @@ public class Assignment {
      * @param last_name
      * @param date
      */
-    private static void addLineToUsersTable(String username, String password, String first_name, String last_name, Date date) {
+    private static String addLineToUsersTable(String username, String password, String first_name, String last_name, Date date) {
 
         Session session = null;
         Users new_user = new Users();
@@ -174,6 +186,11 @@ public class Assignment {
             new_user.setDateOfBirth(new Timestamp(date.getTime()));
             new_user.setRegistrationDate(new Timestamp(System.currentTimeMillis()));
 
+//            String query = "SELECT COUNT (*) FROM Users";
+//            List <Long> query_Ans = session.createQuery(query).getResultList();
+//            long id = query_Ans.get(0);
+//            new_user.setUserid(id);
+
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(new_user);
             transaction.commit();
@@ -186,7 +203,8 @@ public class Assignment {
             HibernateUtil.closeSession();
         }
 
-
+        String userId = String.valueOf(new_user.getUserid());
+        return userId;
     }
 
 
