@@ -1,6 +1,4 @@
-import Entities.History;
-import Entities.Loginlog;
-import Entities.Users;
+import Entities.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -33,7 +31,7 @@ public class Assignment {
 
         String user1 = insertUser("sch8", "1234", "yarden", "schwartz", "08", "September", "1995");
         System.out.println(user1);
-        String user2 = insertUser("sch12", "1234", "yarden", "schwartz", "08", "September", "1995");
+        String user2 = insertUser("sch1", "1234", "yarden", "schwartz", "08", "September", "1995");
         System.out.println(user2);
         //        String x = validateUser("sch","1234");
 //        System.out.println(x);
@@ -44,7 +42,24 @@ public class Assignment {
      * @param username
      * @return
      */
-    private static boolean isExistUsername(String username) {
+    public static boolean isExistUsername(String username) {
+        Session session=null;
+        try
+        {
+            session=HibernateUtil.currentSession();
+            String squ="SELECT username FROM Users users WHERE users.username='"+username+"'";
+            Query query=session.createQuery(squ);
+            return ((org.hibernate.query.Query) query).list().size()>0;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+
+        }
+        finally {
+            HibernateUtil.closeSession();
+
+        }
         return false;
     }
 
@@ -58,19 +73,16 @@ public class Assignment {
      * @param day_of_birth
      * @param month_of_birth
      * @param year_of_birth
-     * @return 
+     * @return
      */
     public static String insertUser(String username, String password, String first_name, String last_name,
                                     String day_of_birth, String month_of_birth, String year_of_birth){
-        
         //checking validation
         if( (Integer.parseInt(day_of_birth) > 0 && Integer.parseInt(day_of_birth) <= 31 ) &&
                 (Integer.parseInt(year_of_birth) <= 2020) ){
             if(isExistUsername(username))
                 return null;
             else{
-//                Session session = null;
-//                Users new_user = new Users();
                 try {
                     //convert string of date to date format
                     Date date = new Date();
@@ -90,18 +102,13 @@ public class Assignment {
                             return null; //invalid month
                         }
                     }
-                    // insert the user to Users table and return his id
-                    return addLineToUsersTable(username, password, first_name, last_name, date);
+
+                    // insert the user to Users table
+                    addLineToUsersTable(username, password, first_name, last_name, date);
                 }
                 catch (Exception e){
                     System.out.println(e);
                 }
-//                finally
-//                {
-//                    HibernateUtil.closeSession();
-//                }
-//                String userId = String.valueOf(new_user.getUserid());
-//                return userId;
             }
         }
 
@@ -109,6 +116,42 @@ public class Assignment {
         return null;
 
 //        return null;
+    }
+
+    /**
+     * Q2.G
+     * The function retrieves from the table MediaItems first top_n items (mid
+     * descending order
+     * @param n
+     * @return
+     */
+    public static List<Mediaitems> getTopNItems (int n){
+        Session session;
+        List<Mediaitems> result=new LinkedList<Mediaitems>();
+        try{
+            List<Mediaitems> allmediaItems=null;
+            session=HibernateUtil.currentSession();
+            allmediaItems= session.createQuery("select items from Mediaitems items").list();
+            Collections.sort(allmediaItems, new Comparator<Mediaitems>() {
+                @Override
+                public int compare(Mediaitems u1, Mediaitems u2) {
+                    if(u1.getMid()-(u2.getMid())<0){
+                        return 1;
+                    }
+                    return -1;
+                }
+            });
+            for (int i=0; i<n ;i++){
+                result.add(allmediaItems.get(i));
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            HibernateUtil.closeSession();
+        }
+        return result;
     }
 
 
@@ -156,6 +199,37 @@ public class Assignment {
         return null;
     }
 
+
+    /**
+     * Q.2.I
+     * The function compares received values with existing in the data base.
+     * table otherwise “Not Found”.
+     * @param username
+     * @param password
+     * @return ADMINID if the values are equal to the values in the
+     */
+    public static String validateAdministrator (String username, String
+            password){
+        Session session;
+        try{
+            session=HibernateUtil.currentSession();
+            List<Administrators> admins= session.createQuery("select admin from Administrators admin where admin.username='"+username+"' and admin.password='"+password+"'").list();
+            if(admins.isEmpty()){
+                return "Not Found";
+            }
+            else{
+                return ""+admins.get(0).getAdminid();
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            HibernateUtil.closeSession();
+        }
+        return "Not Found";
+
+    }
     /**
      * check if month_of_birth is legal number: between numbers 1-12
      * if yes - return true, else return false
@@ -287,6 +361,31 @@ public class Assignment {
 
         System.out.println("The insertion to history table was successful" + server_time);
     }
+    /**
+     * Q.2.K
+     * The function retrieves from the tables History and MediaItems users's items.
+     * @param userid
+     * @return List of pairs <title,viewtime> sorted by VIEWTIME in
+     * ascending order.
+     */
+    public static  Map<String,Date> getHistory (String userid){
+        Session session = null;
+        Map<String, Date> result = new HashMap<String, Date>();
+        try {
+            session = HibernateUtil.currentSession();
+            Query q = session.createQuery("select item.title, history.viewtime from History as history join Mediaitems as item on history.mid=item.mid where history.userid=:userId order by history.viewtime asc");
+            q.setParameter("userId", Long.parseLong(userid));
+            List<Object[]> query_res = ((org.hibernate.query.Query) q).list();
+            for (Object[] entry : query_res) result.put((String) entry[0], (Date) entry[1]);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            HibernateUtil.closeSession();
+        }
+        return result;
+    }
+
 
     /**
      * Q 2.l
@@ -322,6 +421,31 @@ public class Assignment {
     }
 
     /**
+     * Q.2.m
+     * The function retrieves from the table Users number of registered users in
+     * the past n days
+     * @param n
+     * @return  The function return integer number of registered per user
+     */
+    public static int getNumberOfRegistredUsers(int n){
+        int result=0;
+        Session session=null;
+        try{
+            session=HibernateUtil.currentSession();
+            List<Users>relevant_users= session.createQuery("select users.username from Users users where users.registrationDate > sysdate-"+n).list();
+            result= relevant_users.size();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            HibernateUtil.closeSession();
+        }
+
+        return result;
+    }
+
+    /**
      * Q 2.n
      * @return from the table Users all users
      */
@@ -345,5 +469,30 @@ public class Assignment {
         }
 
         return listOfAllUsersFromQuery;
+    }
+
+    /**
+     * The function retrieves from the table Users user's information
+     * @param userid
+     * @return object User
+     */
+    public static Users getUser (String userid){
+        Users user= null;
+        Session session=null;
+        try{
+            session=HibernateUtil.currentSession();
+            List<Users>relevant_users= session.createQuery("select user from Users user where user.userid='"+userid+"'").list();
+            if(!relevant_users.isEmpty()){
+                user=relevant_users.get(0);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            HibernateUtil.closeSession();
+        }
+
+        return user;
     }
 }
