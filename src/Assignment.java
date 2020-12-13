@@ -33,7 +33,7 @@ public class Assignment {
 
         String user1 = insertUser("sch8", "1234", "yarden", "schwartz", "08", "September", "1995");
         System.out.println(user1);
-        String user2 = insertUser("sch1", "1234", "yarden", "schwartz", "08", "September", "1995");
+        String user2 = insertUser("sch12", "1234", "yarden", "schwartz", "08", "September", "1995");
         System.out.println(user2);
         //        String x = validateUser("sch","1234");
 //        System.out.println(x);
