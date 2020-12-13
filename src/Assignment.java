@@ -137,7 +137,7 @@ public class Assignment {
     /**
      * Q2.G
      * The function retrieves from the table MediaItems first top_n items (mid
-     * descending order
+     * descending order)
      * @param n
      * @return
      */
@@ -211,10 +211,10 @@ public class Assignment {
     /**
      * Q.2.I
      * The function compares received values with existing in the data base.
-     * table otherwise “Not Found”.
      * @param username
      * @param password
      * @return ADMINID if the values are equal to the values in the
+     * table otherwise “Not Found”.
      */
     public static String validateAdministrator (String username, String
             password){
@@ -359,7 +359,7 @@ public class Assignment {
 
     /**
      * Q 2.n
-     * @return from the table Users all users
+     * @return from the table Users all the users
      */
     public static List<Users> getUsers (){
         List<Users> listOfAllUsersFromQuery = null;
