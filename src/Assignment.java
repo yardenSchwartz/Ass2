@@ -31,9 +31,9 @@ public class Assignment {
 //        System.out.println(date);
 //        System.out.println(a);
 
-        String user1 = insertUser("sch4", "1234", "yarden", "schwartz", "08", "September", "1995");
+        String user1 = insertUser("sch8", "1234", "yarden", "schwartz", "08", "September", "1995");
         System.out.println(user1);
-        String user2 = insertUser("sch5", "1234", "yarden", "schwartz", "08", "September", "1995");
+        String user2 = insertUser("sch1", "1234", "yarden", "schwartz", "08", "September", "1995");
         System.out.println(user2);
         //        String x = validateUser("sch","1234");
 //        System.out.println(x);
@@ -58,7 +58,7 @@ public class Assignment {
      * @param day_of_birth
      * @param month_of_birth
      * @param year_of_birth
-     * @return
+     * @return id of inserted user, or null if cannot insert the user to the table
      */
     public static String insertUser(String username, String password, String first_name, String last_name,
                                     String day_of_birth, String month_of_birth, String year_of_birth){
@@ -69,8 +69,8 @@ public class Assignment {
             if(isExistUsername(username))
                 return null;
             else{
-                Session session = null;
-                Users new_user = new Users();
+//                Session session = null;
+//                Users new_user = new Users();
                 try {
                     //convert string of date to date format
                     Date date = new Date();
@@ -96,19 +96,19 @@ public class Assignment {
                 catch (Exception e){
                     System.out.println(e);
                 }
-                finally
-                {
-                    HibernateUtil.closeSession();
-                }
-                String userId = String.valueOf(new_user.getUserid());
-                return userId;
+//                finally
+//                {
+//                    HibernateUtil.closeSession();
+//                }
+//                String userId = String.valueOf(new_user.getUserid());
+//                return userId;
             }
         }
-        else //not valid
-            return null;
+
+        //not valid
+        return null;
 
 //        return null;
-
     }
 
 
@@ -124,17 +124,28 @@ public class Assignment {
             //check if month_of_birth is name of month
             HashMap<String, String> MonthsNames=new HashMap<>();
             MonthsNames.put("January","01");
+            MonthsNames.put("Jan","01");
             MonthsNames.put("February","02");
+            MonthsNames.put("Feb","02");
             MonthsNames.put("March","03");
+            MonthsNames.put("Mar","03");
             MonthsNames.put("April","04");
+            MonthsNames.put("Apr","04");
             MonthsNames.put("May","05");
             MonthsNames.put("June","06");
+            MonthsNames.put("Jun","06");
             MonthsNames.put("July","07");
+            MonthsNames.put("Jul","07");
             MonthsNames.put("August","08");
+            MonthsNames.put("Aug","08");
             MonthsNames.put("September","09");
+            MonthsNames.put("Sep","09");
             MonthsNames.put("October","10");
+            MonthsNames.put("Oct","10");
             MonthsNames.put("November","11");
+            MonthsNames.put("Nov","11");
             MonthsNames.put("December","12");
+            MonthsNames.put("Dec","12");
             if (MonthsNames.containsKey(month_of_birth))
                 return MonthsNames.get(month_of_birth);
 
