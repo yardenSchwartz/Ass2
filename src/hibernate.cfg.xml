@@ -10,12 +10,18 @@
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="connection.username">schyarde</property>
         <property name="connection.password">abcd</property>
-
-        <mapping resource="hib/Users.hbm.xml"/>
+        
         <mapping resource="hib/Administrators.hbm.xml"/>
+        <mapping class="hib.Administrators"/>
         <mapping resource="hib/History.hbm.xml"/>
+        <mapping class="hib.History"/>
         <mapping resource="hib/Loginlog.hbm.xml"/>
+        <mapping class="hib.Loginlog"/>
         <mapping resource="hib/Mediaitems.hbm.xml"/>
+        <mapping class="hib.Mediaitems"/>
         <mapping resource="hib/Similarity.hbm.xml"/>
+        <mapping class="hib.Similarity"/>
+        <mapping resource="hib/Users.hbm.xml"/>
+        <mapping class="hib.Users"/>
     </session-factory>
 </hibernate-configuration>
