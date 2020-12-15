@@ -1,4 +1,4 @@
-package Entities;
+package hib;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

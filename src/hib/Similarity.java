@@ -1,6 +1,5 @@
-package Entities;
+package hib;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 

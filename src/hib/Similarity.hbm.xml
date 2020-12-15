@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="Entities.Similarity" table="SIMILARITY">
+    <class name="hib.Similarity" table="SIMILARITY">
         <composite-id>
             <key-property name="mid1" column="MID1"/>
             <key-property name="mid2" column="MID2"/>

@@ -11,11 +11,11 @@
         <property name="connection.username">schyarde</property>
         <property name="connection.password">abcd</property>
 
-        <mapping resource="Entities/Users.hbm.xml"/>
-        <mapping resource="Entities/Administrators.hbm.xml"/>
-        <mapping resource="Entities/History.hbm.xml"/>
-        <mapping resource="Entities/Loginlog.hbm.xml"/>
-        <mapping resource="Entities/Mediaitems.hbm.xml"/>
-        <mapping resource="Entities/Similarity.hbm.xml"/>
+        <mapping resource="hib/Users.hbm.xml"/>
+        <mapping resource="hib/Administrators.hbm.xml"/>
+        <mapping resource="hib/History.hbm.xml"/>
+        <mapping resource="hib/Loginlog.hbm.xml"/>
+        <mapping resource="hib/Mediaitems.hbm.xml"/>
+        <mapping resource="hib/Similarity.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

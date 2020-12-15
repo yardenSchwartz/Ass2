@@ -1,11 +1,9 @@
-package Entities;
+package hib;
 
-import Entities.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -31,9 +29,9 @@ public class Assignment {
 //        System.out.println(date);
 //        System.out.println(a);
 
-        String user1 = insertUser("eden", "1234", "yarden", "schwartz", "08", "September", "1995");
+        String user1 = insertUser("sch101", "1234", "yarden", "schwartz", "08", "September", "1995");
         System.out.println(user1);
-        String user2 = insertUser("sch101", "1234", "yarden", "schwartz", "08", "September", "1995");
+        String user2 = insertUser("eden1", "1234", "yarden", "schwartz", "08", "September", "1995");
         System.out.println(user2);
 //
         System.out.println(getNumberOfRegistredUsers(4));
@@ -117,7 +115,7 @@ public class Assignment {
                 }
 //                finally
 //                {
-//                    Entities.HibernateUtil.closeSession();
+//                    hib.HibernateUtil.closeSession();
 //                }
 //                String userId = String.valueOf(new_user.getUserid());
 //                return userId;
