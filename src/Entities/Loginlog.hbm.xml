@@ -5,7 +5,6 @@
 <hibernate-mapping>
 
     <class name="Entities.Loginlog" table="LOGINLOG">
-        <!--<composite-id class="Entities.LoginlogPK">-->
         <composite-id>
             <key-property name="userid" column="USERID"/>
             <key-property name="logintime" column="LOGINTIME"/>

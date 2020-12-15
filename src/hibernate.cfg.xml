@@ -10,21 +10,12 @@
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="connection.username">schyarde</property>
         <property name="connection.password">abcd</property>
+
         <mapping resource="Entities/Users.hbm.xml"/>
-        <!--<mapping class="Entities.Administrators"/>-->
-        <!--<mapping class="Entities.History"/>-->
-        <!--<mapping class="Entities.Loginlog"/>-->
-        <!--<mapping class="Entities.Mediaitems"/>-->
-        <!--<mapping class="Entities.Similarity"/>-->
-        <!--<mapping class="Entities.Users"/>-->
         <mapping resource="Entities/Administrators.hbm.xml"/>
         <mapping resource="Entities/History.hbm.xml"/>
         <mapping resource="Entities/Loginlog.hbm.xml"/>
         <mapping resource="Entities/Mediaitems.hbm.xml"/>
         <mapping resource="Entities/Similarity.hbm.xml"/>
-        <!--            <id name= "userid"  column="userid">-->
-        <!--                <generator class="native"/>-->
-        <!--            </id>-->
-
     </session-factory>
 </hibernate-configuration>

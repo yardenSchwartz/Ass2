@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-//@Entity
 public class Users implements Serializable {
     private long userid;
     private String username;
@@ -18,8 +17,6 @@ public class Users implements Serializable {
     private Timestamp dateOfBirth;
     private Timestamp registrationDate;
 
-//    @Id
-//    @Column(name = "USERID")
     public long getUserid() {
         return userid;
     }
@@ -28,8 +25,6 @@ public class Users implements Serializable {
         this.userid = userid;
     }
 
-//    @Basic
-//    @Column(name = "USERNAME")
     public String getUsername() {
         return username;
     }
@@ -38,8 +33,6 @@ public class Users implements Serializable {
         this.username = username;
     }
 
-//    @Basic
-//    @Column(name = "PASSWORD")
     public String getPassword() {
         return password;
     }
@@ -48,8 +41,6 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-//    @Basic
-//    @Column(name = "FIRST_NAME")
     public String getFirstName() {
         return firstName;
     }
@@ -58,8 +49,6 @@ public class Users implements Serializable {
         this.firstName = firstName;
     }
 
-//    @Basic
-//    @Column(name = "LAST_NAME")
     public String getLastName() {
         return lastName;
     }
@@ -68,8 +57,6 @@ public class Users implements Serializable {
         this.lastName = lastName;
     }
 
-//    @Basic
-//    @Column(name = "DATE_OF_BIRTH")
     public Timestamp getDateOfBirth() {
         return dateOfBirth;
     }
@@ -78,8 +65,6 @@ public class Users implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-//    @Basic
-//    @Column(name = "REGISTRATION_DATE")
     public Timestamp getRegistrationDate() {
         return registrationDate;
     }

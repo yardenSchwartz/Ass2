@@ -7,15 +7,12 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-//@Entity
 public class Mediaitems implements Serializable {
     private long mid;
     private String title;
     private Long prodYear;
     private Short titleLength;
 
-//    @Id
-//    @Column(name = "MID")
     public long getMid() {
         return mid;
     }
@@ -24,8 +21,6 @@ public class Mediaitems implements Serializable {
         this.mid = mid;
     }
 
-//    @Basic
-//    @Column(name = "TITLE")
     public String getTitle() {
         return title;
     }
@@ -34,8 +29,6 @@ public class Mediaitems implements Serializable {
         this.title = title;
     }
 
-//    @Basic
-//    @Column(name = "PROD_YEAR")
     public Long getProdYear() {
         return prodYear;
     }
@@ -44,8 +37,6 @@ public class Mediaitems implements Serializable {
         this.prodYear = prodYear;
     }
 
-//    @Basic
-//    @Column(name = "TITLE_LENGTH")
     public Short getTitleLength() {
         return titleLength;
     }

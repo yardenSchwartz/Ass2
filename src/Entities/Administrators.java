@@ -13,8 +13,6 @@ public class Administrators implements Serializable {
     private String username;
     private String password;
 
-//    @Id
-//    @Column(name = "ADMINID")
     public long getAdminid() {
         return adminid;
     }
@@ -23,8 +21,6 @@ public class Administrators implements Serializable {
         this.adminid = adminid;
     }
 
-//    @Basic
-//    @Column(name = "USERNAME")
     public String getUsername() {
         return username;
     }
@@ -33,8 +29,6 @@ public class Administrators implements Serializable {
         this.username = username;
     }
 
-//    @Basic
-//    @Column(name = "PASSWORD")
     public String getPassword() {
         return password;
     }

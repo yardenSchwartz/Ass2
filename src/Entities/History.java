@@ -8,15 +8,11 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-//@Entity
-//@IdClass(HistoryPK.class)
 public class History implements Serializable {
     private long userid;
     private long mid;
     private Timestamp viewtime;
 
-//    @Id
-//    @Column(name = "USERID")
     public long getUserid() {
         return userid;
     }
@@ -25,8 +21,6 @@ public class History implements Serializable {
         this.userid = userid;
     }
 
-//    @Id
-//    @Column(name = "MID")
     public long getMid() {
         return mid;
     }
@@ -35,8 +29,6 @@ public class History implements Serializable {
         this.mid = mid;
     }
 
-//    @Id
-//    @Column(name = "VIEWTIME")
     public Timestamp getViewtime() {
         return viewtime;
     }
