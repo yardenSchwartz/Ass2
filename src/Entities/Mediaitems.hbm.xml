@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="Entities.Mediaitems" table="MEDIAITEMS">
+        <id name="mid" column="MID"/>
+        <property name="title" column="TITLE" type="java.lang.String"/>
+        <property name="prodYear" column="PROD_YEAR" type="java.lang.Long"/>
+        <property name="titleLength" column="TITLE_LENGTH" type="java.lang.Short"/>
+    </class>
+</hibernate-mapping>

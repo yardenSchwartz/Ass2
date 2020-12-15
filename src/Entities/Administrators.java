@@ -4,16 +4,17 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Administrators {
+public class Administrators implements Serializable {
     private long adminid;
     private String username;
     private String password;
 
-    @Id
-    @Column(name = "ADMINID")
+//    @Id
+//    @Column(name = "ADMINID")
     public long getAdminid() {
         return adminid;
     }
@@ -22,8 +23,8 @@ public class Administrators {
         this.adminid = adminid;
     }
 
-    @Basic
-    @Column(name = "USERNAME")
+//    @Basic
+//    @Column(name = "USERNAME")
     public String getUsername() {
         return username;
     }
@@ -32,8 +33,8 @@ public class Administrators {
         this.username = username;
     }
 
-    @Basic
-    @Column(name = "PASSWORD")
+//    @Basic
+//    @Column(name = "PASSWORD")
     public String getPassword() {
         return password;
     }

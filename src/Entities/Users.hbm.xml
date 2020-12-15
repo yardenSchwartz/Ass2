@@ -1,25 +1,25 @@
-<?xml version = "1.0" encoding = "utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
 <hibernate-mapping>
-    <class name = "Entities.Users" table = "users">
 
+    <class name="Entities.Users" table="USERS">
         <meta attribute = "class-description">
             This class contains the users detail.
         </meta>
 
-        <id name = "userid" type = "long" column = "userid">
+        <id name="userid" type ="long" column ="USERID">
             <generator class="increment"/>
         </id>
 
-        <property name = "username" column = "username" type = "string"/>
-        <property name = "firstName" column = "first_name" type = "string"/>
-        <property name = "lastName" column = "last_name" type = "string"/>
-        <property name = "password" column = "password" type = "string"/>
-        <property name = "dateOfBirth" column = "date_of_birth" type = "timestamp"/>
-        <property name = "registrationDate" column = "registration_date" type = "timestamp"/>
+        <property name="username" column = "USERNAME" type = "string"/>
 
+        <property name="password" column="PASSWORD" type="string"/>
+        <property name="firstName" column="FIRST_NAME" type="string"/>
+        <property name="lastName" column="LAST_NAME" type="string"/>
+
+        <property name="dateOfBirth" column="DATE_OF_BIRTH" type = "timestamp"/>
+        <property name="registrationDate" column="REGISTRATION_DATE" type = "timestamp"/>
     </class>
 </hibernate-mapping>

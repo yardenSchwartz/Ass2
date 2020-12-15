@@ -1,3 +1,5 @@
+package Entities;
+
 import Entities.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -29,10 +31,10 @@ public class Assignment {
 //        System.out.println(date);
 //        System.out.println(a);
 
-//        String user1 = insertUser("sch8", "1234", "yarden", "schwartz", "08", "September", "1995");
-//        System.out.println(user1);
-//        String user2 = insertUser("sch101", "1234", "yarden", "schwartz", "08", "September", "1995");
-//        System.out.println(user2);
+        String user1 = insertUser("eden", "1234", "yarden", "schwartz", "08", "September", "1995");
+        System.out.println(user1);
+        String user2 = insertUser("sch101", "1234", "yarden", "schwartz", "08", "September", "1995");
+        System.out.println(user2);
 //
         System.out.println(getNumberOfRegistredUsers(4));
         //        String x = validateUser("sch","1234");
@@ -48,7 +50,7 @@ public class Assignment {
         Session session=null;
         try
         {
-            session=HibernateUtil.currentSession();
+            session= HibernateUtil.currentSession();
             String squ="SELECT username FROM Users users WHERE users.username='"+username+"'";
             Query query=session.createQuery(squ);
             return ((org.hibernate.query.Query) query).list().size()>0;
@@ -115,7 +117,7 @@ public class Assignment {
                 }
 //                finally
 //                {
-//                    HibernateUtil.closeSession();
+//                    Entities.HibernateUtil.closeSession();
 //                }
 //                String userId = String.valueOf(new_user.getUserid());
 //                return userId;
@@ -206,7 +208,7 @@ public class Assignment {
         Users new_user = new Users();
 
         try{
-            session=HibernateUtil.currentSession();
+            session= HibernateUtil.currentSession();
             new_user.setUsername(username);
             new_user.setPassword(password);
             new_user.setFirstName(first_name);
@@ -248,7 +250,7 @@ public class Assignment {
         List<Mediaitems> result=new LinkedList<Mediaitems>();
         try{
             List<Mediaitems> allmediaItems=null;
-            session=HibernateUtil.currentSession();
+            session= HibernateUtil.currentSession();
             allmediaItems= session.createQuery("select items from Mediaitems items").list();
             Collections.sort(allmediaItems, new Comparator<Mediaitems>() {
                 @Override
@@ -286,7 +288,7 @@ public class Assignment {
         List <Users> query_Ans = null;
         try
         {
-            session=HibernateUtil.currentSession();
+            session= HibernateUtil.currentSession();
             String query = "select users from Users users where users.username='"+username+"' and users.password='"+password+"'";
             query_Ans = session.createQuery(query).getResultList();
         }
@@ -318,7 +320,7 @@ public class Assignment {
             password){
         Session session;
         try{
-            session=HibernateUtil.currentSession();
+            session= HibernateUtil.currentSession();
             List<Administrators> admins= session.createQuery("select admin from Administrators admin where admin.username='"+username+"' and admin.password='"+password+"'").list();
             if(admins.isEmpty()){
                 return "Not Found";
@@ -348,7 +350,7 @@ public class Assignment {
         History new_record_history = new History();
         Timestamp server_time = null;
         try{
-            session=HibernateUtil.currentSession();
+            session= HibernateUtil.currentSession();
             new_record_history.setUserid(Long.parseLong(userid));
             new_record_history.setMid(Long.parseLong(mid));
 
@@ -406,7 +408,7 @@ public class Assignment {
         Loginlog new_record_log = new Loginlog();
         Timestamp server_time = null;
         try{
-            session=HibernateUtil.currentSession();
+            session= HibernateUtil.currentSession();
             new_record_log.setUserid(Long.parseLong(userid));
 
             server_time = new Timestamp(System.currentTimeMillis());
@@ -440,7 +442,7 @@ public class Assignment {
         int result=0;
         Session session=null;
         try{
-            session=HibernateUtil.currentSession();
+            session= HibernateUtil.currentSession();
             List<Users>relevant_users= session.createQuery("select users.username from Users users where users.registrationDate > sysdate()-"+n).list();
             result= relevant_users.size();
         }
@@ -464,7 +466,7 @@ public class Assignment {
 
         try
         {
-            session=HibernateUtil.currentSession();
+            session= HibernateUtil.currentSession();
             String query = "select users from Users users";
             listOfAllUsersFromQuery = session.createQuery(query).getResultList();
         }
@@ -490,7 +492,7 @@ public class Assignment {
         Users user= null;
         Session session=null;
         try{
-            session=HibernateUtil.currentSession();
+            session= HibernateUtil.currentSession();
             List<Users>relevant_users= session.createQuery("select user from Users user where user.userid='"+userid+"'").list();
             if(!relevant_users.isEmpty()){
                 user=relevant_users.get(0);

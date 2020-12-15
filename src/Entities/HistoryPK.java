@@ -11,8 +11,8 @@ public class HistoryPK implements Serializable {
     private long mid;
     private Timestamp viewtime;
 
-    @Column(name = "USERID")
-    @Id
+//    @Column(name = "USERID")
+//    @Id
     public long getUserid() {
         return userid;
     }
@@ -21,8 +21,8 @@ public class HistoryPK implements Serializable {
         this.userid = userid;
     }
 
-    @Column(name = "MID")
-    @Id
+//    @Column(name = "MID")
+//    @Id
     public long getMid() {
         return mid;
     }
@@ -31,8 +31,8 @@ public class HistoryPK implements Serializable {
         this.mid = mid;
     }
 
-    @Column(name = "VIEWTIME")
-    @Id
+//    @Column(name = "VIEWTIME")
+//    @Id
     public Timestamp getViewtime() {
         return viewtime;
     }

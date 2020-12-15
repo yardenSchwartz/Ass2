@@ -4,17 +4,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@IdClass(LoginlogPK.class)
-public class Loginlog {
+//@Entity
+//@IdClass(LoginlogPK.class)
+public class Loginlog implements Serializable {
     private long userid;
     private Timestamp logintime;
 
-    @Id
-    @Column(name = "USERID")
+//    @Id
+//    @Column(name = "USERID")
     public long getUserid() {
         return userid;
     }
@@ -23,8 +24,8 @@ public class Loginlog {
         this.userid = userid;
     }
 
-    @Id
-    @Column(name = "LOGINTIME")
+//    @Id
+//    @Column(name = "LOGINTIME")
     public Timestamp getLogintime() {
         return logintime;
     }

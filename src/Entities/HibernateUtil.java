@@ -1,3 +1,5 @@
+package Entities;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -17,7 +19,7 @@ public class HibernateUtil {
     static {
         try {
             // Create the SessionFactory                
-            sessionFactory = new Configuration().configure().buildSessionFactory();
+            sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
            
         } catch (Throwable ex) {
             

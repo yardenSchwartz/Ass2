@@ -4,18 +4,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@IdClass(HistoryPK.class)
-public class History {
+//@Entity
+//@IdClass(HistoryPK.class)
+public class History implements Serializable {
     private long userid;
     private long mid;
     private Timestamp viewtime;
 
-    @Id
-    @Column(name = "USERID")
+//    @Id
+//    @Column(name = "USERID")
     public long getUserid() {
         return userid;
     }
@@ -24,8 +25,8 @@ public class History {
         this.userid = userid;
     }
 
-    @Id
-    @Column(name = "MID")
+//    @Id
+//    @Column(name = "MID")
     public long getMid() {
         return mid;
     }
@@ -34,8 +35,8 @@ public class History {
         this.mid = mid;
     }
 
-    @Id
-    @Column(name = "VIEWTIME")
+//    @Id
+//    @Column(name = "VIEWTIME")
     public Timestamp getViewtime() {
         return viewtime;
     }

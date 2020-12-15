@@ -4,11 +4,12 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-public class Users {
+//@Entity
+public class Users implements Serializable {
     private long userid;
     private String username;
     private String password;
@@ -17,8 +18,8 @@ public class Users {
     private Timestamp dateOfBirth;
     private Timestamp registrationDate;
 
-    @Id
-    @Column(name = "USERID")
+//    @Id
+//    @Column(name = "USERID")
     public long getUserid() {
         return userid;
     }
@@ -27,8 +28,8 @@ public class Users {
         this.userid = userid;
     }
 
-    @Basic
-    @Column(name = "USERNAME")
+//    @Basic
+//    @Column(name = "USERNAME")
     public String getUsername() {
         return username;
     }
@@ -37,8 +38,8 @@ public class Users {
         this.username = username;
     }
 
-    @Basic
-    @Column(name = "PASSWORD")
+//    @Basic
+//    @Column(name = "PASSWORD")
     public String getPassword() {
         return password;
     }
@@ -47,8 +48,8 @@ public class Users {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "FIRST_NAME")
+//    @Basic
+//    @Column(name = "FIRST_NAME")
     public String getFirstName() {
         return firstName;
     }
@@ -57,8 +58,8 @@ public class Users {
         this.firstName = firstName;
     }
 
-    @Basic
-    @Column(name = "LAST_NAME")
+//    @Basic
+//    @Column(name = "LAST_NAME")
     public String getLastName() {
         return lastName;
     }
@@ -67,8 +68,8 @@ public class Users {
         this.lastName = lastName;
     }
 
-    @Basic
-    @Column(name = "DATE_OF_BIRTH")
+//    @Basic
+//    @Column(name = "DATE_OF_BIRTH")
     public Timestamp getDateOfBirth() {
         return dateOfBirth;
     }
@@ -77,8 +78,8 @@ public class Users {
         this.dateOfBirth = dateOfBirth;
     }
 
-    @Basic
-    @Column(name = "REGISTRATION_DATE")
+//    @Basic
+//    @Column(name = "REGISTRATION_DATE")
     public Timestamp getRegistrationDate() {
         return registrationDate;
     }
